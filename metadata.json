@@ -1,0 +1,5 @@
+{
+  "name": "FHIR Data Converter Analyst",
+  "description": "An intelligent application to convert JSON, XML, or PDF files into FHIR R4 resources using AI. It allows saving to a mock HAPI FHIR database, provides data analytics, and enables a conversational Q&A about the data.",
+  "requestFramePermissions": []
+}

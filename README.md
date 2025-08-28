@@ -13,8 +13,12 @@ View your app in AI Studio: https://ai.studio/apps/temp/5
 **Prerequisites:**  Node.js
 
 
-1. Install dependencies:
+1. Install dependencies: Install Node.js
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+   Install latest ollama 3 
+   Run in Bash:  ollama run llama3
+   Start Docker
+   Run $env:OLLAMA_ORIGINS="*" ollama serve in powershell
+
+2. Run the app:
    `npm run dev`

@@ -1,5 +1,16 @@
 version: "3.9"
 services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ollama
+      - fhir
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - FHIR_BASE_URL=http://fhir:8080/fhir
+
   ollama:
     image: ollama/ollama:latest
     container_name: ollama
@@ -10,5 +21,31 @@ services:
     entrypoint: >
       sh -c "ollama serve & sleep 5 && ollama pull llama3 && wait"
 
+  fhir:
+    image: hapiproject/hapi:latest
+    container_name: hapi-fhir
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/hapi
+      SPRING_DATASOURCE_USERNAME: hapi
+      SPRING_DATASOURCE_PASSWORD: hapi
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: fhir-db
+    environment:
+      POSTGRES_DB: hapi
+      POSTGRES_USER: hapi
+      POSTGRES_PASSWORD: hapi
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
 volumes:
   ollama:
+  db_data:

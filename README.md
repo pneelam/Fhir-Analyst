@@ -15,10 +15,6 @@ View your app in AI Studio: https://ai.studio/apps/temp/5
 
 1. Install dependencies: Install Node.js
    `npm install`
-   Install latest ollama 3 
-   Run in Bash:  ollama run llama3
-   Start Docker
-   Run $env:OLLAMA_ORIGINS="*" ollama serve in powershell
 
 2. Run the app:
    `npm run dev`

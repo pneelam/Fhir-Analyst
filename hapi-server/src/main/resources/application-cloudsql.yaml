@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    # Prefer env to inject your exact connection name. Example template:
+    # jdbc:postgresql:///hapi_fhir_db?cloudSqlInstance=PROJECT:REGION:INSTANCE&socketFactory=com.google.cloud.sql.postgres.SocketFactory&ipTypes=PUBLIC
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD:}  # empty if using IAM DB auth
+    driver-class-name: org.postgresql.Driver
+
+hapi:
+  fhir:
+    server:
+      address: ${HAPI_FHIR_SERVER_ADDRESS:https://YOUR_PUBLIC_BASE/fhir}

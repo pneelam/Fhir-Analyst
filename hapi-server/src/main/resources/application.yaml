@@ -1,0 +1,56 @@
+server:
+  port: 8080
+  forward-headers-strategy: ${SERVER_FORWARD_HEADERS_STRATEGY:framework}
+  use-forward-headers: ${SERVER_USE_FORWARD_HEADERS:true}
+  tomcat:
+    protocol-header: ${SERVER_TOMCAT_PROTOCOL_HEADER:x-forwarded-proto}
+    remote-ip-header: ${SERVER_TOMCAT_REMOTE_IP_HEADER:x-forwarded-for}
+
+hapi:
+  fhir:
+    version: ${hapi.fhir.fhir_version:${HAPI_FHIR_VERSION:R4}}
+    server:
+      address: ${HAPI_FHIR_SERVER_ADDRESS:http://localhost:8080/fhir}
+      default-response-encoding: json
+      default-pretty-print: true
+      cors:
+        allowed-origins: "*"
+        allowed-headers: "*"
+        allowed-methods: "GET,POST,PUT,DELETE,OPTIONS,PATCH"
+    ips:
+      enabled: true
+
+  jpa:
+    partitioning.enabled: false
+    enable-lucene-indexing: true
+    lucene:
+      storage.type: filesystem
+      filesystem.directory: /data/lucene
+    bulk-export.enabled: true
+    delete-with-cascade: true
+    enforce-referential-integrity-on-delete: true
+    subscription:
+      resthook.enabled: true
+      websocket.enabled: true
+
+spring:
+  jpa:
+    hibernate.ddl-auto: update
+    properties:
+      hibernate.dialect: ${SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT:ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect}
+      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate.format_sql: false
+  main:
+    banner-mode: console
+    allow-circular-references: true
+
+management:
+  endpoints:
+    web.exposure.include: health,info,prometheus,metrics
+  endpoint.health.show-details: never
+  metrics.tags.application: hapi-fhir
+
+logging:
+  level:
+    root: INFO
+    ca.uhn.fhir: INFO

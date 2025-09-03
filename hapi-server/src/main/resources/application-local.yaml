@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://db:5432/hapi_fhir_db}
+    username: ${SPRING_DATASOURCE_USERNAME:api}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+
+hapi:
+  fhir:
+    server:
+      address: ${HAPI_FHIR_SERVER_ADDRESS:http://hapi:8080/fhir}

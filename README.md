@@ -13,8 +13,21 @@ View your app in AI Studio: https://ai.studio/apps/temp/5
 **Prerequisites:**  Node.js
 
 
-1. Install dependencies: Install Node.js
-   `npm install`
+#1. Install dependencies: Install Node.js
+ #  `npm install`
 
-2. Run the app:
-   `npm run dev`
+#2. Run the app:
+#   `npm run dev`
+
+#Go to bash and run the following command
+docker compose up --build
+
+Now you’ll have:
+
+Your app → http://localhost:8000
+
+Ollama → http://localhost:11434
+
+HAPI FHIR → http://localhost:8080/fhir
+
+Postgres DB → localhost:5432 (user: hapi, pass: hapi)

@@ -13,11 +13,6 @@ View your app in AI Studio: https://ai.studio/apps/temp/5
 **Prerequisites:**  Node.js
 
 
-#1. Install dependencies: Install Node.js
- #  `npm install`
-
-#2. Run the app:
-#   `npm run dev`
 
 #Go to bash and run the following command
 docker compose up --build

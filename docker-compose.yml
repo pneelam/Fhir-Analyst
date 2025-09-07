@@ -2,28 +2,20 @@ services:
   app:
     build: .
     ports:
-      - "8000:8000"
+      - "5173:5173"
     depends_on:
       - ollama
-      - hapi
+      - hapi      
     environment:
       - OLLAMA_HOST=http://ollama:11434
-      - FHIR_BASE_URL=http://hapi:8090/fhir
-
+      - FHIR_BASE_URL=http://hapi:8090/fhir      
   ollama:
     image: ollama/ollama:latest
     container_name: ollama
     ports:
       - "11434:11434"
     volumes:
-      - ollama:/root/.ollama
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+      - ollama:/root/.ollama    
     entrypoint: >
       sh -c "ollama serve & sleep 5 && ollama pull llama3 && wait"
 
@@ -94,5 +86,5 @@ services:
 volumes:
   ollama:
   db_data:
-  lucene_data:
-    
+  lucene_data: 
+  vite:  

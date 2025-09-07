@@ -16,10 +16,11 @@ View your app in AI Studio: https://ai.studio/apps/temp/5
 
 #Go to bash and run the following command
 docker compose up --build
+And Go to http://localhost:5173
 
 Now you’ll have:
 
-Your app → http://localhost:8000
+Your app → http://localhost:5173
 
 Ollama → http://localhost:11434
 
